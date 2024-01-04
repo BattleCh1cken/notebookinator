@@ -7,7 +7,7 @@
 
 #show: docs-template.with(
   title: "The Notebookinator", subtitle: "Easy formatting for robotics notebooks.", abstract: [
-    Welcome to the Notebookinator, a Typst package meant to simply the notebooking
+    Welcome to the Notebookinator, a Typst package meant to simplify the notebooking
     process for the Vex Robotics Competition. Its theming capabilities handle all of
     the styling for you, letting you jump right into writing documentation.
 

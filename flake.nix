@@ -29,6 +29,7 @@
           typstfmt.packages.${system}.default
           pkgs.act
           pkgs.nodePackages_latest.prettier
+          pkgs.pre-commit
         ];
       };
 

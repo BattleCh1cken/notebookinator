@@ -1,0 +1,12 @@
+#!/bin/sh
+
+error=0
+
+while read -r line; do
+    if ! grep -qE '^[\x{1F300}-\x{1F5FF}]+ .+' <<< "$line"; then
+        echo "Invalid commit message: $line"
+        error=1
+    fi
+done < <(git log --format=%B --reverse "$1..HEAD")
+
+exit $error

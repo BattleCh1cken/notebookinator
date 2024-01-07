@@ -1,0 +1,13 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0 # Use the ref you want to point at
+    hooks:
+      - id: check-yaml
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: gitmoji-check
+        name: "Check Gitmoji Commit Messages"
+        entry: scripts/gitmoji-check
+        language: script
+        types: [text]

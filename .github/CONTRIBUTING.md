@@ -22,7 +22,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 - [Suggesting Enhancements](#suggesting-enhancements)
 - [Your First Code Contribution](#your-first-code-contribution)
 - [Improving The Documentation](#improving-the-documentation)
-- [Styleguides](#style-guides)
+- [Style Guides](#style-guides)
 - [Typst Code](#typst-code)
 - [Commit Messages](#commit-messages)
 

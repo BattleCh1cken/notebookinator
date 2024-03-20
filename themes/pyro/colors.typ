@@ -1,0 +1,7 @@
+#let gray = rgb("#BBBBBB")
+#let blue = rgb("#0077bb")
+#let light-blue = rgb("#33bbee")
+#let green = rgb("#009988")
+#let orange = rgb("#ee7733")
+#let red = rgb("#cc3311")
+#let pink = rgb("#ee3377")

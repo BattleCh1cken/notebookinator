@@ -33,9 +33,9 @@
   let rules = theme.rules
   show: doc => rules(doc)
 
+  let cover-context = (team-name: team-name, season: season, year: year)
   let cover-content = if cover == none {
-    let context = (team-name: team-name, season: season, year: year)
-    print-cover(context: context, theme: theme)
+    print-cover(context: cover-context, theme: theme)
   } else {
     cover
   }
@@ -43,6 +43,6 @@
 
   page[] // Filler page
 
-  print-entries(theme: theme)
+  print-entries(theme: theme, cover-context: cover-context)
   body // FIXME: this should be ignored, but the document doesn't properly render without it.
 }

@@ -24,13 +24,13 @@
 ///
 /// - theme (theme):
 /// -> content
-#let print-entries(theme: (:)) = {
+#let print-entries(theme: (:), cover-context: (:)) = {
   let print-helper(section, state) = {
     locate(loc => {
       for entry in state.final(loc) [
         #let entry-func = fallback-to-default(section + "-entry", theme)
         #let body = [] + entry.body
-        #entry-func(body, context: entry.context)
+        #entry-func(body, context: entry.context + cover-context)
       ]
     })
   }

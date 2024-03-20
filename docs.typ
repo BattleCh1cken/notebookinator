@@ -175,8 +175,14 @@ The default theme.
 
 #warning[
   This theme is very minimal, and is generally intended as a fallback for stuff
-  that other themes don't implement.
+  that other themes don't implement. We recommend that you use one of the other
+  more polished themes instead.
 ]
+
+=== Required Fonts
+
+This theme uses on the standard fonts packaged with Typst, so no further fonts
+need to be installed.
 
 === Components
 
@@ -248,6 +254,11 @@ Minimal starting point:
     read(predicate + name + ".typ")
   }
 }
+
+=== Required Fonts
+
+This theme requires that the following fonts be installed on your computer:
+- #link("https://www.freefonts.io/calibri-font/")[Calibri]
 
 === Components
 
@@ -348,6 +359,11 @@ Minimal starting point:
   #components.glossary()
 ]
 ```
+
+=== Required Fonts
+
+This theme requires that the following fonts be installed on your computer:
+- #link("https://fonts.google.com/specimen/Blinker")[Blinker]
 
 === Components
 

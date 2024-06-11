@@ -8,6 +8,9 @@
 /// - title (string): The title of the entry.
 /// - type (string): The type of entry. The possible values for this are decided by the theme.
 /// - date (datetime): The date that the entry occured at.
+/// - author (str): The author of the entry.
+/// - witness (str): The witness of the entry.
+/// - participants (array): The people who participated in the entry.
 /// - body (content): The content of the entry.
 #let create-entry(
   section: none,
@@ -16,6 +19,7 @@
   date: none,
   author: "",
   witness: "",
+  participants: (),
   body,
 ) = {
   let (state, entry-label) = if section == "frontmatter" {
@@ -28,25 +32,28 @@
     panic("No valid entry type selected")
   }
 
-  state.update(
-    entries => {
-      // Inject the proper labels and settings changes into the user's entry body
-      let final-body = if entries.len() == 0 {
-        [#counter(page).update(1)] // Correctly set the page number for each section
-      } + [
-        #metadata(none) #entry-label
-        #counter(footnote).update(0)
-      ] + body // Place a label on blank content to the table of contents can find each entry
+  state.update(entries => {
+    // Inject the proper labels and settings changes into the user's entry body
+    let final-body = if entries.len() == 0 {
+      [#counter(page).update(1)] // Correctly set the page number for each section
+    } + [
+      #metadata(none) #entry-label
+      #counter(footnote).update(0)
+    ] + body // Place a label on blank content to the table of contents can find each entry
 
-      entries.push(
-        (
-          ctx: (title: title, type: type, date: date, author: author, witness: witness),
-          body: final-body,
-        ),
-      )
-      entries
-    },
-  )
+    entries.push((
+      ctx: (
+        title: title,
+        type: type,
+        date: date,
+        author: author,
+        witness: witness,
+        participants: participants
+      ),
+      body: final-body,
+    ))
+    entries
+  })
 }
 
 /// Variant of the `#create-entry()` function that creates a frontmatter entry.

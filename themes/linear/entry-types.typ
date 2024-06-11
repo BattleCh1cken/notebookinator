@@ -7,4 +7,6 @@
   "build": light-blue,
   "program": light-purple,
   "test": light-pink,
+  "management": gray,
+  "notebook": gray,
 )

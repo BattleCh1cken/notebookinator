@@ -1,5 +1,9 @@
 name: Tests
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: main
@@ -11,8 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
       - name: Install just from crates.io
         uses: baptiste0928/cargo-install@v2
         with:
@@ -22,6 +24,7 @@ jobs:
         id: setup-typst
       - name: Run checks
         run: |
-          just install
+          just package local
+          just package preview
           just gallery
           # TODO: run unit tests here

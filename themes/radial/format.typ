@@ -8,8 +8,12 @@
     auto-lines: false,
     inset: 10pt,
     fill: (_, row) => {
-      if calc.odd(row) { surface-3 }
-      if calc.even(row) { surface-1 }
+      if calc.odd(row) {
+        surface-3
+      }
+      if calc.even(row) {
+        surface-1
+      }
     },
     hlinex(stroke: (cap: "round", thickness: 2pt)),
     ..for child in it.children {
@@ -44,31 +48,41 @@
 )
 
 #let raw-block(it) = {
-  set par(justify: false);
+  set par(justify: false)
   // the line counter
-  let i = 0;
-  let box-radius = 1.5pt;
+  let i = 0
+  let box-radius = 1.5pt
 
-  let detail-radius = 1.5pt;
+  let detail-radius = 1.5pt
   if (it.lang != none) {
     grid(
       columns: (100%, 100%),
       column-gutter: (-100%),
-      block(width: 100%, inset: 1em, {
-        for line in it.text.split("\n") {
-          box(width: 0pt, align(right, str(i + 1) + h(2em)))
-          hide(line)
-          linebreak()
-          i = i + 1;
-        }
-      }),
-      block(radius: box-radius, fill: surface-1, width: 100%, inset: 1em, {
-        place(
-          top + right,
-          box(fill: surface-3, radius: detail-radius, outset: 3pt, it.lang),
-        )
-        it
-      }),
+      block(
+        width: 100%,
+        inset: 1em,
+        {
+          for line in it.text.split("\n") {
+            box(width: 0pt, align(right, str(i + 1) + h(2em)))
+            hide(line)
+            linebreak()
+            i = i + 1
+          }
+        },
+      ),
+      block(
+        radius: box-radius,
+        fill: surface-1,
+        width: 100%,
+        inset: 1em,
+        {
+          place(
+            top + right,
+            box(fill: surface-3, radius: detail-radius, outset: 3pt, it.lang),
+          )
+          it
+        },
+      ),
     )
   } else {
     block(radius: box-radius, fill: surface-2, width: 100%, inset: 1em, it)

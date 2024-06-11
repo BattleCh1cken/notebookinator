@@ -32,7 +32,10 @@
           radius: 1.5pt,
         )[
           * #member.name *
-          #line(length: 100%, stroke: (cap: "round", dash: "solid", thickness: 1.5pt))
+          #line(
+            length: 100%,
+            stroke: (cap: "round", dash: "solid", thickness: 1.5pt),
+          )
           #v(8pt)
           #grid(
             columns: (1fr, 1fr),

@@ -20,7 +20,11 @@ decision matrices.
   template functions for printing out the entries and cover.
 - `glossary.typ`: Contains the user facing API for the glossary.
 - `globals.typ`: Contains all of the global variables for the entire project.
-- `utils.typ`: Utility functions intended to help implement themes.
+- `utils.typ`: Utility functions intended to help implement themes. Imports all of the functions located in `utils`.
+- `utils/`
+  - `misc.typ`: Contains miscellaneous utility functions that don't fit in other categories
+  - `components.typ`: Contains the constructors used by themes to implement components
+  - `theme.typ`: Contains the constructors used to create themes
 - `themes/`: The folder containing all of the themes.
   - `themes.typ`: An index of all the themes are contained in the template
 - `docs.typ`: The entry point for the project documentation.

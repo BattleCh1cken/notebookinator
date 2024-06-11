@@ -5,28 +5,20 @@
 #import "/packages.typ": showybox
 #import showybox: *
 
-/// A message in a colored box meant to draw the reader's attention.
-///
-///
-/// - type (string): The type of admonition.
-///   Available types include:
-///   - "note"
-///   - "example"
-///   - "quote"
-///   - "equation"
-///   - "decision"
-///   - "build"
-/// - body (content): The content of the admonition
-/// -> content
-#let admonition(type: none, body) = {
+#let admonition = utils.make-admonition((type, body) => {
   let info = admonition-type-metadata.at(type)
-  let colored-icon = utils.change-icon-color(raw-icon: info.icon, fill: info.color)
+  let colored-icon = utils.change-icon-color(
+    raw-icon: info.icon,
+    fill: info.color,
+  )
 
   showybox(
     frame: (
       border-color: info.color,
       body-color: info.color.lighten(80%),
-      thickness: (left: 4pt),
+      thickness: (
+        left: 4pt,
+      ),
       radius: 1.5pt,
     ),
     [
@@ -41,4 +33,4 @@
       #body
     ],
   )
-}
+})

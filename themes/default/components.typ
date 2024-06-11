@@ -1,5 +1,3 @@
-#import "/packages.typ": tablex
-#import tablex: tablex, cellx
 #import "/utils.typ"
 
 /// Prints the table of contents.
@@ -7,27 +5,52 @@
 /// *Example Usage*
 ///
 /// ```typ
-/// #create-frontmatter-entry(title: "Table of Contents")[
+/// #create-frontmatter-entry(title: "Table Of Contents")[
 ///   #components.toc()
 /// ]
 /// ```
-#let toc() = utils.print-toc((_, body, appendix) => {
+/// -> content
+#let toc = utils.make-toc((_, body, appendix) => {
   heading[Contents]
-  stack(spacing: 0.5em, ..for entry in body {
-    ([
-      #entry.title
-      #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-      #entry.page-number
-    ],)
-  })
+  stack(
+    spacing: 0.5em,
+    ..for entry in body {
+      (
+        [
+          #entry.title
+          #box(
+            width: 1fr,
+            line(
+              length: 100%,
+              stroke: (dash: "dotted"),
+            ),
+          )
+          #entry.page-number
+        ],
+      )
+    },
+  )
 
   heading[Appendix]
-  stack(..for entry in appendix {
-    ([
-      #entry.title
-      #box(width: 1fr, line(length: 100%, stroke: (dash: "dotted")))
-      #entry.page-number
-    ],)
+
+  stack(
+    spacing: 0.5em,
+    ..for entry in appendix {
+    (
+      [
+        #entry.title
+        #box(
+          width: 1fr,
+          line(
+            length: 100%,
+            stroke: (
+              dash: "dotted",
+            ),
+          ),
+        )
+        #entry.page-number
+      ],
+    )
   })
 })
 
@@ -36,87 +59,94 @@
 /// *Example Usage*
 ///
 /// ```typ
-/// #create-appendix-entry(title: "Glossary")[
-///   #components.glossary()
-/// ]
+/// #glossary.add-term("Foo", lorem(10))
+/// #glossary.add-term("Bar", lorem(5))
+/// #components.glossary()
 /// ```
-#let glossary() = utils.print-glossary(glossary => {
-  stack(spacing: 0.5em, ..for entry in glossary {
-    ([
-      = #entry.word
+/// -> content
+#let glossary = utils.make-glossary(glossary => {
+  stack(
+    spacing: 0.5em,
+    ..for entry in glossary {
+      (
+        [
+          = #entry.word
 
-      #entry.definition
-    ],)
-  })
+          #entry.definition
+        ],
+      )
+    },
+  )
 })
 
 /// Prints a decision matrix table.
 ///
 /// *Example Usage*
 ///
-/// ```typ
-/// #components.decision-matrix(
-///    properties: (
-///      (name: "Category 1"),
-///      (name: "Category 2"),
-///      (name: "Category 3")
-///    ),
-///    ("Decision", 4, 3, 2),
-///    ("Matrix", 1, 2, 3),
-///  )
-/// ```
+/// #example(
+/// `components.decision-matrix(
+///   properties: (
+///     "Cat. 1", // weights will default to 1
+///     "Cat. 2",
+///     "Cat. 3",
+///   ),
+///   ("Choice 1", 4, 3, 2),
+///   ("Choice 2", 1, 2, 3),
+/// )`,
+/// scale-preview: 100%
+/// )
 ///
-/// *Example Usage*
-/// ```typ
-/// #components.decision-matrix(
+/// #example(
+/// `components.decision-matrix(
 ///   properties: (
 ///     (name: "Flavor", weight: 2),
-///     (name: "Crunchiness"), // The weight defaults to 1
+///     (name: "Crunch", weight: 1),
 ///   ),
 ///   ("Sweet Potato", 1, 2),
 ///   ("Baked Potato", 2, 1)
 /// )
-///
-/// ```
+/// `,
+/// scale-preview: 100%
+/// )
 /// - properties (array): A list of the properties that each choice will be rated by and the weight of each property
 /// - ..choices (array): An array containing the name of the choices as its first member,
 /// and values for each of the properties at its following indices
+///
 /// -> content
-#let decision-matrix(properties: (), ..choices) = {
-  let data = utils.calc-decision-matrix(properties: properties, ..choices)
-  tablex(
+#let decision-matrix = utils.make-decision-matrix((properties, data) => {
+  table(
     columns: for _ in range(properties.len() + 2) {
       (1fr,)
     },
-    [], // Blank box
+    [],
     ..for property in properties {
       ([ *#property.name* ],)
     },
     [*Total*],
-    ..for choice in data {
-      // Override the fill if the choice has the highest score
-      let cell = if choice.values.total.highest { cellx.with(fill: green) } else { cellx }
-      (cell[*#choice.name*], ..for value in choice.values {
-        (cell[#value.at(1).value],)
-      })
+    ..for (index, choice) in data {
+      let cell = if choice.total.highest {
+        table.cell.with(fill: green)
+      } else {
+        table.cell
+      }
+      (
+        cell[*#index*],
+        ..for value in choice.values() {
+          (cell[#value.weighted],)
+        },
+      )
     },
   )
-}
+})
 
 /// Prints a pros and cons table.
 ///
 /// *Example Usage*
 ///
-/// ```typ
-/// #components.pro-con(
-///   pros: "Pros",
-///   cons: "Cons"
-/// )
-/// ```
+/// #example(`components.pro-con(pros: lorem(10), cons: lorem(5))`, scale-preview: 100%)
 ///
-/// *Example Usage*
-/// ```typ
-/// #components.pro-con(
+/// #example(
+/// `components.pro-con(
 ///  pros: [
 ///    #list(
 ///      "Sweet potato",
@@ -130,16 +160,19 @@
 ///    )
 ///  ]
 /// )
-/// ```
+/// `, scale-preview: 100%)
 /// - pros (content): The positive aspects
 /// - cons (content): The negative aspects
 /// -> content
-#let pro-con(pros: [], cons: []) = {
-  tablex(
-    columns: (1fr, 1fr),
-    cellx(fill: green)[*Pros*],
-    cellx(fill: red)[*Cons*],
-    [#pros],
-    [#cons],
+#let pro-con = utils.make-pro-con((pros, cons) => {
+  table(
+    columns: (
+      1fr,
+      1fr,
+    ),
+    table.cell(fill: green)[*Pros*],
+    table.cell(fill: red)[*Cons*],
+    pros,
+    cons,
   )
-}
+})

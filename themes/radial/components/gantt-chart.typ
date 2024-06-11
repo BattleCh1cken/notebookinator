@@ -21,17 +21,17 @@
 /// )
 /// ```
 /// - start (datetime): Start date using datetime object
-///   - year: `<integer>` 
-///   - month: `<integer>` 
+///   - year: `<integer>`
+///   - month: `<integer>`
 ///   - day: `<integer>`
 /// Example usage: ```typ datetime(year: 2024, month: 7, day: 16)```
 /// - end (datetime): End date using datetime object
-///   - year: `<integer>` 
-///   - month: `<integer>` 
+///   - year: `<integer>`
+///   - month: `<integer>`
 ///   - day: `<integer>`
 /// Example usage: ```typ datetime(year: 2024, month: 5, day: 2)```
 /// - date-interval (integer): The interval between dates, seven would make it weekly
-/// - date-format (string): The way the date is formated using the `<datetime.display()>` method 
+/// - date-format (string): The way the date is formatted using the `<datetime.display()>` method
 /// - tasks (array): Specify tasks using an array of arrays that have three fields each
 ///   + `<string>` or `<content>` The name of the task
 ///   + `<array>`(`<integer>` or `<float>`, `<integer>` or `<float>`) The start and end point of the task
@@ -54,13 +54,10 @@
 ) = {
   timeliney.timeline(
     spacing: 5pt,
-    
     show-grid: true,
     grid-style: (stroke: (dash: none, thickness: .2pt, paint: black)),
-
     tasks-vline: true,
     line-style: (stroke: 0pt),
-
     milestone-overhang: 3pt,
     milestone-layout: "in-place",
     box-milestones: true,
@@ -68,26 +65,40 @@
     {
       import timeliney: *
 
-      let difference = end - start      
+      let difference = end - start
       let dates-array = ()
       let months-array = ()
       let month-len = 0
       let last-month = start.month()
       let next
 
-      for value in range(int((difference.days())/date-interval)+1) {
-        next = start + duration(days: (value*date-interval))
-        dates-array.push(group(((next).display(date-format),1)))
+      for value in range(int((difference.days()) / date-interval) + 1) {
+        next = start + duration(days: (value * date-interval))
+        dates-array.push(group(((next).display(date-format), 1)))
         if next.month() == last-month {
           month-len += 1
-          last-month = next.month() 
+          last-month = next.month()
         } else {
-          months-array.push(group(((datetime(year: next.year(), month: last-month, day: 1)).display("[month repr:long]"),month-len)))
+          months-array.push(
+            group((
+              (
+                datetime(year: next.year(), month: last-month, day: 1)
+              ).display("[month repr:long]"),
+              month-len,
+            )),
+          )
           month-len = 1
-          last-month = next.month() 
+          last-month = next.month()
         }
       }
-      months-array.push(group(((datetime(year: next.year(), month: last-month, day: 1)).display("[month repr:long]"),month-len)))
+      months-array.push(
+        group((
+          (
+            datetime(year: next.year(), month: last-month, day: 1)
+          ).display("[month repr:long]"),
+          month-len,
+        )),
+      )
 
       headerline(..months-array)
       headerline(..dates-array)
@@ -101,29 +112,47 @@
           } else {
             goal-color = goal.at(2)
           }
-          milestone([#box(fill: goal-color, outset: 3pt, radius: 1.5pt)[#goal.at(0)]], at: goal.at(1))
+          milestone(
+            [#box(fill: goal-color, outset: 3pt, radius: 1.5pt)[#goal.at(0)]],
+            at: goal.at(1),
+          )
         }
       }
 
       let colors = (red, orange, yellow, green, blue, violet)
       let index = 0
-      let size = difference.days()/date-interval
+      let size = difference.days() / date-interval
       let pos = ()
-      
+
       taskgroup({
         for item in tasks {
-          pos = (item.at(1).at(0)+size*0.007, item.at(1).at(1)-size*0.007)
+          pos = (
+            item.at(1).at(0) + size * 0.007,
+            item.at(1).at(1) - size * 0.007,
+          )
           if item.len() == 2 {
-            if index == colors.len()-1 {
+            if index == colors.len() - 1 {
               index = 0
             }
-            task(item.at(0), pos, style: (stroke: (paint: colors.at(index), thickness: 5pt, cap: "round")))
+            task(
+              item.at(0),
+              pos,
+              style: (
+                stroke: (paint: colors.at(index), thickness: 5pt, cap: "round"),
+              ),
+            )
             index += 1
           } else {
-            task(item.at(0), pos, style: (stroke: (paint: item.at(2), thickness: 5pt, cap: "round")))
+            task(
+              item.at(0),
+              pos,
+              style: (
+                stroke: (paint: item.at(2), thickness: 5pt, cap: "round"),
+              ),
+            )
           }
         }
       })
-    }
+    },
   )
 }

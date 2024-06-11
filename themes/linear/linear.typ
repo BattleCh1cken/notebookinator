@@ -3,8 +3,9 @@
 #import "format.typ": set-border, set-heading
 #import "components/components.typ"
 #import "colors.typ": *
+#import "/utils.typ"
 
-#let linear-theme = (
+#let linear-theme = utils.make-theme(
   // Global show rules
   rules: rules,
   cover: cover,

@@ -21,7 +21,7 @@
     [
       #set text(size: 14pt)
       Identify the Problem
-      
+
       #set text(size: 12pt)
       Identifies the game and robot design challenges in detail at the start of each design process cycle with words and pictures. States the goals for accomplishing the challenge.
     ]),
@@ -31,7 +31,7 @@
     [
       #set text(size: 14pt)
       Brainstorm, Diagram, or Prototype Solutions
-      
+
       #set text(size: 12pt)
       Lists three or more possible solutions to the challenge with labeled diagrams. Citations provided for ideas that came from outside sources such as online videos or other teams.
     ]),
@@ -41,7 +41,7 @@
     [
       #set text(size: 14pt)
       Select the Best Solution and Plan
-      
+
       #set text(size: 12pt)
       Explains why the solution was selected through testing and/or a decision matrix. Fully describes the plan to implement the solution.
     ]),
@@ -51,7 +51,7 @@
     [
       #set text(size: 14pt)
       Build the Solution
-      
+
       #set text(size: 12pt)
       Records the steps to build the solution. Includes enough detail that the reader can follow the logic used by the team to develop their robot design, as well as recreate the robot design from the documentation.
     ]),
@@ -93,7 +93,11 @@
   #components.toc()
 ]
 
-#create-body-entry(title: "Title", type: "identify", date: datetime(year: 1111, month: 11, day: 1))[  
+#create-body-entry(
+  title: "Title",
+  type: "identify",
+  date: datetime(year: 1111, month: 11, day: 1),
+)[
   = Heading 1
   #lorem(50)
   #grid(
@@ -102,8 +106,8 @@
     lorem(30),
     align(
       center + horizon,
-      image("../logo.png")
-    )
+      image("../logo.png"),
+    ),
   )
   == Subheading 1
   #components.pro-con(
@@ -111,22 +115,22 @@
       #list(
         [#lorem(10)],
         [#lorem(12)],
-        [#lorem(15)]
+        [#lorem(15)],
       )
     ],
     cons: [
       #list(
         [#lorem(12)],
-        [#lorem(10)]
+        [#lorem(10)],
       )
-    ]
+    ],
   )
   == Subheading 2
   #components.decision-matrix(
     properties: (
       (name: "Category 1"),
       (name: "Category 2"),
-      (name: "Category 3", weight: 2)
+      (name: "Category 3", weight: 2),
     ),
     ("Decision", 3, 1, 4),
     ("Matrix", 2, 3, 5),
@@ -144,25 +148,101 @@
   ```
 ]
 
-#create-body-entry(title: "Title", type: "brainstorm", date: datetime(year: 1111, month: 11, day: 2))[]
-#create-body-entry(title: "Title", type: "brainstorm", date: datetime(year: 1111, month: 11, day: 2))[]
-#create-body-entry(title: "Title", type: "brainstorm", date: datetime(year: 1111, month: 11, day: 2))[]
-#create-body-entry(title: "Title", type: "brainstorm", date: datetime(year: 1111, month: 11, day: 2))[]
-#create-body-entry(title: "Title", type: "decide", date: datetime(year: 1111, month: 11, day: 3))[]
-#create-body-entry(title: "Title", type: "build", date: datetime(year: 1111, month: 11, day: 3))[]
-#create-body-entry(title: "Title", type: "build", date: datetime(year: 1111, month: 11, day: 3))[]
-#create-body-entry(title: "Title", type: "build", date: datetime(year: 1111, month: 11, day: 3))[]
-#create-body-entry(title: "Title", type: "program", date: datetime(year: 1111, month: 11, day: 3))[]
-#create-body-entry(title: "Title", type: "program", date: datetime(year: 1111, month: 11, day: 3))[]
-#create-body-entry(title: "Title", type: "test", date: datetime(year: 1111, month: 11, day: 4))[]
-#create-body-entry(title: "Title", type: "test", date: datetime(year: 1111, month: 11, day: 4))[]
-#create-body-entry(title: "Title", type: "build", date: datetime(year: 1111, month: 11, day: 5))[]
-#create-body-entry(title: "Title", type: "build", date: datetime(year: 1111, month: 11, day: 5))[]
-#create-body-entry(title: "Title", type: "brainstorm", date: datetime(year: 1111, month: 11, day: 5))[]
-#create-body-entry(title: "Title", type: "brainstorm", date: datetime(year: 1111, month: 11, day: 5))[]
-#create-body-entry(title: "Title", type: "decide", date: datetime(year: 1111, month: 11, day: 5))[]
-#create-body-entry(title: "Title", type: "program", date: datetime(year: 1111, month: 11, day: 5))[]
-#create-body-entry(title: "Title", type: "test", date: datetime(year: 1111, month: 11, day: 5))[]
+#create-body-entry(
+  title: "Title",
+  type: "brainstorm",
+  date: datetime(year: 1111, month: 11, day: 2),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "brainstorm",
+  date: datetime(year: 1111, month: 11, day: 2),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "brainstorm",
+  date: datetime(year: 1111, month: 11, day: 2),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "brainstorm",
+  date: datetime(year: 1111, month: 11, day: 2),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "decide",
+  date: datetime(year: 1111, month: 11, day: 3),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "build",
+  date: datetime(year: 1111, month: 11, day: 3),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "build",
+  date: datetime(year: 1111, month: 11, day: 3),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "build",
+  date: datetime(year: 1111, month: 11, day: 3),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "program",
+  date: datetime(year: 1111, month: 11, day: 3),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "program",
+  date: datetime(year: 1111, month: 11, day: 3),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "test",
+  date: datetime(year: 1111, month: 11, day: 4),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "test",
+  date: datetime(year: 1111, month: 11, day: 4),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "build",
+  date: datetime(year: 1111, month: 11, day: 5),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "build",
+  date: datetime(year: 1111, month: 11, day: 5),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "brainstorm",
+  date: datetime(year: 1111, month: 11, day: 5),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "brainstorm",
+  date: datetime(year: 1111, month: 11, day: 5),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "decide",
+  date: datetime(year: 1111, month: 11, day: 5),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "program",
+  date: datetime(year: 1111, month: 11, day: 5),
+)[]
+#create-body-entry(
+  title: "Title",
+  type: "test",
+  date: datetime(year: 1111, month: 11, day: 5),
+)[]
 
 #glossary.add-term("Lorem")[
   #lorem(10)

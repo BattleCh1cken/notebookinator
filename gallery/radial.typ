@@ -2,7 +2,11 @@
 #import themes.radial: radial-theme, components, colors
 #import colors: *
 
-#show: notebook.with(theme: radial-theme, team-name: "53E", season: "Over Under")
+#show: notebook.with(
+  theme: radial-theme,
+  team-name: "53E",
+  season: "Over Under",
+)
 
 #create-frontmatter-entry(
   title: "test",
@@ -17,49 +21,54 @@
   type: "decide",
   date: datetime(year: 2024, month: 1, day: 1),
 )[
-= Heading
+  = Heading
 
-#lorem(20)
+  #lorem(20)
 
-#grid(columns: (1fr, 1fr), gutter: 20pt, lorem(40), components.pie-chart(
-  (value: 8, color: green, name: "wins"),
-  (value: 2, color: red, name: "losses"),
-))
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 20pt,
+    lorem(40),
+    components.pie-chart(
+      (value: 8, color: green, name: "wins"),
+      (value: 2, color: red, name: "losses"),
+    ),
+  )
 
-#lorem(23)
+  #lorem(23)
 
-= Heading
+  = Heading
 
-#lorem(40)
+  #lorem(40)
 
-#components.decision-matrix(
-  properties: (
-    (name: "property 1", weight: 2),
-    (name: "property 2", weight: 0.5),
-    (name: "property 3", weight: 0.33),
-    (name: "property 4", weight: 0.01),
-  ),
-  ("choice 1", 5, 2, 3, 4),
-  ("choice 2", 1, 2, 3, 1),
-  ("choice 3", 1, 3, 3, 2),
-  ("choice 4", 1, 2, 3, 5),
-  ("choice 5", 1, 2, 3, 1),
-)
+  #components.decision-matrix(
+    properties: (
+      (name: "property 1", weight: 2),
+      (name: "property 2", weight: 0.5),
+      (name: "property 3", weight: 0.33),
+      (name: "property 4", weight: 0.01),
+    ),
+    ("choice 1", 5, 2, 3, 4),
+    ("choice 2", 1, 2, 3, 1),
+    ("choice 3", 1, 3, 3, 2),
+    ("choice 4", 1, 2, 3, 5),
+    ("choice 5", 1, 2, 3, 1),
+  )
 
-#lorem(20)
+  #lorem(20)
 
-#components.admonition(type: "decision")[#lorem(20)]
+  #components.admonition(type: "decision")[#lorem(20)]
 
-= Heading
+  = Heading
 
-```cpp
-#include <iostream>
+  ```cpp
+  #include <iostream>
 
-int main() {
-  printf("hello world\n")
-  return 0;
-}
-```
+  int main() {
+    printf("hello world\n")
+    return 0;
+  }
+  ```
 
 ]
 
@@ -101,11 +110,14 @@ int main() {
 
   #lorem(50)
 
-  #align(center, components.pie-chart(
-    (value: 2985, color: yellow, name: "Competitions"),
-    (value: 3000, color: blue, name: "Travel"),
-    (value: 2400, color: red, name: "Materials"),
-  ))
+  #align(
+    center,
+    components.pie-chart(
+      (value: 2985, color: yellow, name: "Competitions"),
+      (value: 3000, color: blue, name: "Travel"),
+      (value: 2400, color: red, name: "Materials"),
+    ),
+  )
 
   #lorem(50)
 

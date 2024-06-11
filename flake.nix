@@ -2,16 +2,12 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     utils.url = "github:numtide/flake-utils";
-    typstfmt.url = "github:astrale-sharp/typstfmt/0.2.7";
-
-    typstfmt.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     { self
     , nixpkgs
     , utils
-    , typstfmt
     ,
     }:
     utils.lib.eachDefaultSystem (system:
@@ -40,7 +36,9 @@
           just
           mdbook
           mdbook-admonish
+
           mdbook-typst-doc
+          typstyle
         ];
       };
 

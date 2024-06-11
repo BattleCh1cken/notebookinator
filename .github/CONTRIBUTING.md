@@ -172,13 +172,15 @@ Once you've made your changes, submit your changes as a pull request, as describ
 
 ### Typst Code
 
-Currently we do not have an established coding style. In the future we'll use the [Typstfmt](https://github.com/astrale-sharp/typstfmt) formatter to enforce our style, but it is not robust enough to meet our needs as of now.
+Typst code must be formatted with the [Typstyle](https://github.com/Enter-tainer/typstyle) formatter, with a column length of 80.
+
+We recommend using it with the [Tinymist](https://github.com/Myriad-Dreamin/tinymist) language server.
 
 ### Commit Messages
 
 Commit messages should be short and descriptive. This project follows the [Gitmoji](https://gitmoji.dev/about) commit style.
 
-Use the unicode version of the emojis wherever possible. This means you should write 🔥 instead of :fire:.
+Use the unicode version of the emojis wherever possible. This means you should write 🔥 instead of \:fire\:.
 
 ### Branches
 

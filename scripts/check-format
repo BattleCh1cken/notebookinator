@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+check_file() {
+	unformatted_file=$(cat "$1")
+	formatted_file=$(typstyle -c 80 "$1")
+
+	file_diff=$(diff -u <(echo "$unformatted_file") <(echo "$formatted_file"))
+
+	if [ -n "$file_diff" ]; then
+		echo "There was an error on file $1"
+		echo "$file_diff"
+		exit 1
+	fi
+
+}
+
+export -f check_file
+
+find ./ -type f -name "*.typ" -print0 | xargs -0 -n 1 bash -c 'check_file "$0"'

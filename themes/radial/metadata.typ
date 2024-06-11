@@ -3,6 +3,7 @@
 
 // These should really be with their respective files, but that causes a cyclic import error, so I put them here.
 
+// @typstyle off
 #let entry-type-metadata = (
   "identify": (icon: icons.question-mark, color: yellow),
   "brainstorm": (icon: icons.light-bulb, color: orange),
@@ -14,6 +15,7 @@
   "notebook": (icon: icons.page, color: pink),
 )
 
+// @typstyle off
 #let admonition-type-metadata = (
   "note": (icon: icons.pencil, color: green, title: "Note"),
   "warning": (icon: icons.warning, color: red, title: "Warning"),

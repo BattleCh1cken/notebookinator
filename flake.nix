@@ -2,16 +2,12 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     utils.url = "github:numtide/flake-utils";
-    typstfmt.url = "github:astrale-sharp/typstfmt/0.2.7";
-
-    typstfmt.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     { self
     , nixpkgs
     , utils
-    , typstfmt
     ,
     }:
     utils.lib.eachDefaultSystem (system:
@@ -30,6 +26,27 @@
 
         cargoHash = "sha256-KD6J8dTIPaII4ISh0PW6u1EMj5JVEDYcXuZ75ycbSys=";
       };
+      typstyle = pkgs.rustPlatform.buildRustPackage rec {
+        pname = "typstyle";
+        version = "v0.11.25";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "Enter-tainer";
+          repo = pname;
+          rev = version;
+          sha256 = "sha256-wpG+laz1k/zCnEAVOyXzrN2DOECpKWT1nVCuQUwD+p0=";
+        };
+
+        nativeBuildInputs = [
+          pkgs.pkg-config
+        ];
+
+
+        checkFlags = [
+          "--skip=e2e"
+        ];
+        cargoHash = "sha256-+8nadPuRKNKM+YVzZlz9rypDKjorYIwTUYkaSFrra1k=";
+      };
     in
     {
       devShell = pkgs.mkShell {
@@ -40,7 +57,9 @@
           just
           mdbook
           mdbook-admonish
+
           mdbook-typst-doc
+          typstyle
         ];
       };
 
